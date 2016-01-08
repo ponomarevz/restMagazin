@@ -1,0 +1,141 @@
+
+/*-------------- анимировать переходы----------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.7); }
+}
+
+  
+[ui-view].ng-enter {
+	animation-duration: 0.7s;
+    animation-fill-mode: both;
+    animation-name: fadeIn;
+	-moz-animation-duration: 0.7s;
+	-moz-animation-name: fadeIn;
+	-moz-animation-fill-mode: both;
+	-webkit-animation-duration: 0.7s;
+	-webkit-animation-fill-mode: both;
+	-webkit-animation-name: fadeIn;
+}
+  
+
+
+  /*-------------- основной ----------- */
+.blog-footer {
+  padding: 40px 0;
+  color: #999;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+/*----------- оформление навиг меню ----------- */
+.navbar {
+	border: 0;
+	padding: 0;
+    background-color: #E7E7E7;
+  	margin-bottom: 0px;
+}
+
+.navbar .navbar-nav > li > a {
+  font-size: 16px;
+   color: #999;
+   padding: 15px 5px;
+}
+
+.navbar .navbar-nav > li:hover,
+.navbar .navbar-nav > li > a:hover {
+  background-color: #52b6ec;
+  color: #fff;
+  transition: 0.7s;
+  }
+
+  .navbar .navbar-nav > li > a:focus {
+	background-color: #52b6ec;
+  }
+  
+ .navbar-header .logo {
+	color: #80c9f1;
+	text-shadow: 2px 2px 5px white,
+				2px -2px 5px white;
+ }
+
+/*-------------- звездный рейтинг----------- */
+.rating{
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.ractive {
+	cursor: pointer;
+}
+
+.rating .filled {
+  color: #21568b;
+}
+
+.positiv {
+	color: green;
+}
+
+.negativ {
+	color: pink;
+}
+
+/*--------------оформление грида products----------- */
+
+
+.product .thumbnail {
+    cursor:pointer;
+	border: solid grey 1px;
+    position: relative;
+	margin:0;
+	padding:0;
+	margin-top: 10px;
+	
+	
+}
+.product .caption {
+	background-color:pink;
+}
+
+.product .caption h4 {
+	text-align: center;
+	margin:0;
+}
+
+.product img {
+	height: 200px !important;
+	transition: 0.7s;
+}
+
+.product .hover {
+	position: absolute;
+	bottom: 35px;
+	width:100%;
+	opacity: 0;
+	transition: 0.7s;
+	margin: 4px 0;
+}
+.product .hover p {
+	margin:5px 10px;
+	line-height: 10px;
+}
+.product:hover .hover {
+	background-color: #52b6ec;
+	opacity: 0.8;
+}
+.product:hover img {
+	transform: scale(0.98); 
+}
