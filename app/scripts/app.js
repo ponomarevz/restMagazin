@@ -1,10 +1,10 @@
 'use strict';
 
-	angular.module('App', ['ui.router', 'ngAnimate', 'ngStorage', 'ngSanitize']);
+	angular.module('App', ['ui.router', 'ngAnimate', 'ngStorage']);
 	
 		angular.module('App').
-		config(function($stateProvider, $urlRouterProvider) {
-			
+		config(function($stateProvider) {
+		
 			
 		$stateProvider
 		.state('about', {
@@ -78,10 +78,10 @@
 						});
 					}
 				}
-			})
+			});
 			
 	})
 	.config(function($urlRouterProvider){
 		// redirect to /products  
 		$urlRouterProvider.when('', '/products');
-	})
+	});

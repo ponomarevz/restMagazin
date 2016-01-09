@@ -46,7 +46,7 @@
 										<h5>{{item.text}}</h5>
 																				
 										<p style="color:grey; font-size: 10px;"><em>	Cтворений користувачем:<a href="#">{{item.created_by.username}}</a>,
-										<small>{{item.created_at | date : short : timezone}}</small></em></p>
+										<small>{{getData(item.created_at) | date : short : timezone}}</small></em></p>
 											
 										
 									</div>

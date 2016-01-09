@@ -12,24 +12,35 @@ angular.module('App').
 					comentService.putComent(product.id, rating, coment)
 						.then(function(res){
 							//---обновляем модель---------
-							
+						if (res.success === true) {
 							var nevComent = { 
 								'created_by': {
 									'username': $localStorage.user 
 								},
-								'created_at': new Date(),
+								'created_at': '2130-12-23T10:23:02.685Z', //---необх JS Date конвертировать Unix timestamp
 								'rate': rating,
 								'text': coment
 							};
 							
-							$scope.coments.push(nevComent);
+							$scope.coments.unshift(nevComent);
+							
+						}
+							
 						});
 				}
-			}
+			};
 			
 			$scope.getClass = function(rating) {
 				return rating >= 3 ? 'positiv' : 'negativ';
-			}
+			};
+			
+			$scope.getData = function(date) {
+				if (date !== '2130-12-23T10:23:02.685Z') {
+					return date;
+				} else {
+					return 'сейчас';
+				}
+			};
 			
 		});
 		

@@ -16,10 +16,10 @@ angular.module('App')
 				onRatingSelected : '&',
 				vis : '='
 			},
-			link : function(scope, elem, attrs) {
+			link : function(scope) {
 				var updateStars = function() {
 					scope.stars = [];
-					scope.ratingValue == 0 ? 1 : scope.ratingValue;
+					scope.ratingValue === 0 ? 1 : scope.ratingValue;
 					for ( var i = 0; i < scope.max; i++) {
 						scope.stars.push({
 							filled : i < scope.ratingValue
@@ -28,7 +28,7 @@ angular.module('App')
 				};
 				
 				scope.toggle = function(index) {
-					if (scope.vis !=1) {
+					if (scope.vis !== 1) {
 						scope.ratingValue = index + 1;
 						scope.onRatingSelected({
 							rating : index + 1
@@ -49,17 +49,17 @@ angular.module('App')
 );
 //-------------------деректива повторной проверки пароля------------
  angular.module('App')
-	.directive("passwordVerify",function(){
+	.directive('passwordVerify',function(){
     return {
-        require:"ngModel",
+        require:'ngModel',
         link: function(scope,element,attrs,ctrl){
             ctrl.$parsers.unshift(function(viewValue){
-                var origin = scope.$eval(attrs["passwordVerify"]);
+                var origin = scope.$eval(attrs['passwordVerify']);
                 if(origin!==viewValue){
-                    ctrl.$setValidity("passwordVerify",false);
+                    ctrl.$setValidity('passwordVerify',false);
                     return undefined;
                 }else{
-                    ctrl.$setValidity("passwordVerify",true);
+                    ctrl.$setValidity('passwordVerify',true);
                     return viewValue;
                 }
             });

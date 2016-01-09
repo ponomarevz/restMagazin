@@ -12,7 +12,7 @@ angular.module('App').
 			
 			$scope.logout = function() {
 				autorService.LogOut();
-			}
+			};
 			
 		});
 

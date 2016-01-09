@@ -71,19 +71,20 @@
 		//-----------логаут путем очистки токена в localStorage----------
 		this.LogOut = function() {
 			$localStorage.$reset();
-		}
-	};
+		};
+	}
 	
 	//------------сервис для извлечения товаров------------
 	angular
 		.module('App')
 			.service('prodService', prodService);
-	function prodService ($http, $localStorage) {
+			
+	function prodService ($http) {
 		//------------запрос списка продуктов-----
 		this.getProd = function () {
 			var resurs = server + 'api/products/';
 			var	headers = {
-					'Authorization': 'Token ' + $localStorage.token
+			//		'Authorization': 'Token ' + $localStorage.token // список товаров для неавтор польз
 				};
 			//-------------post запрос на авторизацию-------
 			return $http({method: 'get', url: resurs, headers: headers }).
@@ -93,8 +94,9 @@
 		
 		};
 		
-	};
-	//------------сервис коментов на товары------------
+	}
+	
+	//------------сервис для извл ост коментов на товары------------
 	angular
 		.module('App')
 			.service('comentService', comentService);
@@ -104,7 +106,7 @@
 		this.getComent = function (id) {
 			var resurs = server + 'api/reviews/' + id;
 			var	headers = {
-					'Authorization': 'Token ' + $localStorage.token
+				//	'Authorization': 'Token ' + $localStorage.token //список коментов для неаториз польз
 				};
 			//-------------get запрос на коменты-------
 			return $http({method: 'get', url: resurs, headers: headers }).
@@ -114,6 +116,7 @@
 		
 		};
 		
+		//------------отправка коментария-----------
 		this.putComent = function (id, rate, text) {
 			var resurs = server + 'api/reviews/' + id;
 			var	headers = {
@@ -131,9 +134,9 @@
 		
 		};
 		
-	};
+	}
 	
-})(); //------локализируем функции сервисов
+})(); //------локализируем обявления функций сервисов
 
 
 

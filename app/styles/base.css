@@ -1,7 +1,7 @@
 
 /*-------------- анимировать переходы----------- */
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.7); }
+	from { opacity: 0; transform: scale(0.7); }
 }
 
   
@@ -17,15 +17,13 @@
 	-webkit-animation-name: fadeIn;
 }
   
-
-
-  /*-------------- основной ----------- */
+ /*-------------- основной ----------- */
 .blog-footer {
-  padding: 40px 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: 1px solid #e5e5e5;
+	padding: 40px 0;
+	color: #999;
+	text-align: center;
+	background-color: #f9f9f9;
+	border-top: 1px solid #e5e5e5;
 }
 /*----------- оформление навиг меню ----------- */
 .navbar {
@@ -36,45 +34,45 @@
 }
 
 .navbar .navbar-nav > li > a {
-  font-size: 16px;
-   color: #999;
-   padding: 15px 5px;
+	font-size: 16px;
+	color: #999;
+	padding: 15px 5px;
 }
 
 .navbar .navbar-nav > li:hover,
 .navbar .navbar-nav > li > a:hover {
-  background-color: #52b6ec;
-  color: #fff;
-  transition: 0.7s;
-  }
-
-  .navbar .navbar-nav > li > a:focus {
 	background-color: #52b6ec;
-  }
+	color: #fff;
+	transition: 0.7s;
+}
+
+.navbar .navbar-nav > li > a:focus {
+	background-color: #52b6ec;
+}
   
- .navbar-header .logo {
+.navbar-header .logo {
 	color: #80c9f1;
 	text-shadow: 2px 2px 5px white,
 				2px -2px 5px white;
- }
+}
 
 /*-------------- звездный рейтинг----------- */
 .rating{
-  color: #a9a9a9;
-  margin: 0;
-  padding: 0;
+	color: #a9a9a9;
+	margin: 0;
+	padding: 0;
 }
 
 ul.rating {
-  display: inline-block;
+	display: inline-block;
 }
 
 .rating li {
-  list-style-type: none;
-  display: inline-block;
-  padding: 1px;
-  text-align: center;
-  font-weight: bold;
+	list-style-type: none;
+	display: inline-block;
+	padding: 1px;
+	text-align: center;
+	font-weight: bold;
 }
 
 .ractive {
@@ -82,7 +80,7 @@ ul.rating {
 }
 
 .rating .filled {
-  color: #21568b;
+	color: #21568b;
 }
 
 .positiv {
@@ -95,19 +93,17 @@ ul.rating {
 
 /*--------------оформление грида products----------- */
 
-
 .product .thumbnail {
     cursor:pointer;
-	border: solid grey 1px;
-    position: relative;
+	position: relative;
 	margin:0;
 	padding:0;
 	margin-top: 10px;
-	
-	
 }
+
 .product .caption {
 	background-color:pink;
+	
 }
 
 .product .caption h4 {
@@ -118,6 +114,7 @@ ul.rating {
 .product img {
 	height: 200px !important;
 	transition: 0.7s;
+	border-radius: 2px;
 }
 
 .product .hover {
@@ -132,10 +129,10 @@ ul.rating {
 	margin:5px 10px;
 	line-height: 10px;
 }
-.product:hover .hover {
+.product .thumbnail:hover .hover {
 	background-color: #52b6ec;
 	opacity: 0.8;
 }
-.product:hover img {
+.product .thumbnail:hover img {
 	transform: scale(0.98); 
 }
