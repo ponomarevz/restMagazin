@@ -5,11 +5,7 @@ angular.module('App')
 	function() {
 		return {
 			restrict : 'A',
-			template : '<ul class="rating">'
-					 + '	<li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
-					 + '\u2605'
-					 + '</li>'
-					 + '</ul>',
+			templateUrl : 'scripts/directives/star.html',
 			scope : {
 				ratingValue : '=',
 				max : '=',
@@ -19,7 +15,7 @@ angular.module('App')
 			link : function(scope) {
 				var updateStars = function() {
 					scope.stars = [];
-					scope.ratingValue === 0 ? 1 : scope.ratingValue;
+					//alert(scope.ratingValue);
 					for ( var i = 0; i < scope.max; i++) {
 						scope.stars.push({
 							filled : i < scope.ratingValue

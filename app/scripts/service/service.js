@@ -1,12 +1,9 @@
 (function(){
 'use strict';
+/*jshint validthis:true */
 	
 	var server = 'http://smktesting.herokuapp.com/';
 	
-	angular
-		.module('App')
-			.service('autorService', autorService);
-			
 	//------------сервис для авторизации------------
 	function autorService ($http, $localStorage) {
 		/*------------Вход и получение tokena-------
@@ -74,20 +71,20 @@
 		};
 	}
 	
-	//------------сервис для извлечения товаров------------
 	angular
 		.module('App')
-			.service('prodService', prodService);
-			
+			.service('autorService', autorService);
+	
+	
+	//------------сервис для извлечения товаров------------
+				
 	function prodService ($http) {
 		//------------запрос списка продуктов-----
 		this.getProd = function () {
 			var resurs = server + 'api/products/';
-			var	headers = {
-			//		'Authorization': 'Token ' + $localStorage.token // список товаров для неавтор польз
-				};
+			
 			//-------------post запрос на авторизацию-------
-			return $http({method: 'get', url: resurs, headers: headers }).
+			return $http({method: 'get', url: resurs}).
 					then(function(res) { 
 						return res.data;
 				});
@@ -96,20 +93,20 @@
 		
 	}
 	
-	//------------сервис для извл ост коментов на товары------------
 	angular
 		.module('App')
-			.service('comentService', comentService);
+			.service('prodService', prodService);
 			
-	function comentService ($http, $localStorage) {
+			
+	//------------сервис для извл ост коментов на товары------------
+				
+	function comentService ($http) {
 		//------------запрос списка коментов-----
 		this.getComent = function (id) {
 			var resurs = server + 'api/reviews/' + id;
-			var	headers = {
-				//	'Authorization': 'Token ' + $localStorage.token //список коментов для неаториз польз
-				};
+			
 			//-------------get запрос на коменты-------
-			return $http({method: 'get', url: resurs, headers: headers }).
+			return $http({method: 'get', url: resurs}).
 					then(function(res) { 
 						return res.data;
 				});
@@ -119,15 +116,16 @@
 		//------------отправка коментария-----------
 		this.putComent = function (id, rate, text) {
 			var resurs = server + 'api/reviews/' + id;
-			var	headers = {
-					'Authorization': 'Token ' + $localStorage.token
-				};
+			//var	headers = {
+			//		'Authorization': 'Token ' + $localStorage.token
+			//	}; перенес в App .config  $httpProvider.interceptors.push
 			var coment = {
 				'rate': rate,
 				'text': text
 			};
 			//-------------post запрос на добавления комента-------
-			return $http({method: 'Post', url: resurs, headers: headers, data: coment  }).
+			//return $http({method: 'Post', url: resurs, headers: headers, data: coment  }).
+			return $http({method: 'Post', url: resurs, data: coment  }).
 					then(function(res) { 
 						return res.data;
 				});
@@ -135,6 +133,10 @@
 		};
 		
 	}
+	
+	angular
+		.module('App')
+			.service('comentService', comentService);
 	
 })(); //------локализируем обявления функций сервисов
 

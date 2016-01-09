@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('App').
-		controller('products', function ($scope, $rootScope, products) {
+		controller('products', function (products) {
 			
-			$scope.products = products;
+			var vm = this;
+			
+			vm.products = products;
 			
 		});

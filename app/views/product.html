@@ -3,18 +3,18 @@
     
 	
 			<div class = "col-sm-3 col-md-4">
-				<img style="width:100%; max-width:200px; display:block; margin:0 auto;" class="group" ng-src="http://smktesting.herokuapp.com/static/{{product.img}}" alt="" />
+				<img style="width:100%; max-width:200px; display:block; margin:0 auto;" class="group" ng-src="http://smktesting.herokuapp.com/static/{{pr.product.img}}" alt="" />
                 <div style="margin: 0 10px; padding:0; line-height: 10px;">
                     <hr style="margin:0; margin-top:5px; padding:0;">
-					<h4>{{product.title}}</h4>
-                    <p>{{product.text}}</p>
+					<h4>{{pr.product.title}}</h4>
+                    <p>{{pr.product.text}}</p>
                     <p>Ціна</p>
 					<hr style="margin:0; padding:0;">
 				</div>
-				<div ng-if="!isAuthenticated()">
+				<div ng-if="!main.isAuthenticated()">
 					<b style="color: red">Тільки зареєстровані користувачі можуть залишати коментарі.</b>
 				</div>
-				<div ng-if="isAuthenticated()">
+				<div ng-if="main.isAuthenticated()">
 					<form class="form-group" name="comentform">
 					<label for="">Оцініть продукт</label>
 						<div ng-init="rating = star.rating + 1"></div>
@@ -24,7 +24,7 @@
 						<textarea ng-model="coment" class = "form-control" rows = "3"
 							name="coment" ng-maxlength=50 ng-pattern="/^[a-zA-ZА-Яа-яІіЇїЄє0-9 ,:;.]*$/"></textarea>
 					</div>	
-						<button class="btn btn-success" style= "margin-top:5px;" ng-click="addComent(coment, rating, comentform)">Додати коментар</button>
+						<button class="btn btn-success" style= "margin-top:5px;" ng-click="pr.addComent(coment, rating, comentform)">Додати коментар</button>
 					</form>
 				</div>
 						
@@ -38,15 +38,15 @@
 							<div style="padding-top:10px" class="panel-body">
 							
 								<div class="list-group">
-									<div ng-repeat="item in coments | orderBy:'created_at':'true'" class="list-group-item" style="padding: 0 5px;">
-										<small style="float:right;" ng-class="getClass(rating)">Оцінка-{{item.rate}}
-											<div ng-init="rating = item.rate + 1"></div>
+									<div ng-repeat="item in pr.coments | orderBy:'created_at':'true'" class="list-group-item" style="padding: 0 5px;">
+										<small style="float:right;" ng-class="pr.getClass(rating)">Оцінка-{{item.rate}}
+											<div ng-init="rating = item.rate"></div>
 											<div class="star-rating" star-rating rating-value="rating" data-max="5" data-vis = "1"></div>
 										</small>
 										<h5>{{item.text}}</h5>
 																				
 										<p style="color:grey; font-size: 10px;"><em>	Cтворений користувачем:<a href="#">{{item.created_by.username}}</a>,
-										<small>{{getData(item.created_at) | date : short : timezone}}</small></em></p>
+										<small>{{pr.getData(item.created_at) | date : short : timezone}}</small></em></p>
 											
 										
 									</div>

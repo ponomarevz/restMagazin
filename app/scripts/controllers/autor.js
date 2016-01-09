@@ -1,33 +1,35 @@
 'use strict';
 
 angular.module('App').
-		controller('autor', function ($scope, autorService, $state) {
+		controller('autor', function (autorService, $state) {
 			
-			$scope.message = '';
+			var vm = this;
+			
+			vm.message = '';
 			
 			//-----------user signIn----------------
-			$scope.signIn = function (login, passwd) {
+			vm.signIn = function (login, passwd) {
 				autorService.sigIn(login, passwd).then(function(res) {
 							
 					if (res.status === 'ok') {
 						$state.go("products");
-					};
+					}
 						
-					$scope.message = res.status + '  '+  res.data.message;
+					vm.message = res.status + '  '+  res.data.message;
 					
 				});
 			};
 			
 			//-----------user signUp----------------
-			$scope.signUp = function (login, passwd, loginform) {
+			vm.signUp = function (login, passwd, loginform) {
 				if(loginform.$valid){
 					
 					autorService.signUp(login, passwd).then(function(res) { 
 						if (res.status === 'ok') {
 							$state.go("products");
-						}; 
+						} 
 						
-						$scope.message = res.status + '  '+ res.data.message;
+						vm.message = res.status + '  '+ res.data.message;
 						
 					});
 				}

@@ -1,16 +1,17 @@
 'use strict';
 
 angular.module('App').
-		controller('main', function ($scope, $localStorage, $state, autorService) {
+		controller('main', function ($localStorage, autorService) {
 			
+			var vm = this;
 									
-			$scope.isAuthenticated	= function() {
-				$scope.user = $localStorage.user;
-				$scope.token = $localStorage.token;
-				return $scope.token ? true : false;
+			vm.isAuthenticated	= function() {
+				vm.user = $localStorage.user;
+				vm.token = $localStorage.token;
+				return vm.token ? true : false;
 			};
 			
-			$scope.logout = function() {
+			vm.logout = function() {
 				autorService.LogOut();
 			};
 			

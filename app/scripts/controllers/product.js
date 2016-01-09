@@ -1,12 +1,14 @@
 'use strict';
 
 angular.module('App').
-		controller('product', function ($scope, $localStorage, coments, product, comentService) {
+		controller('product', function ($localStorage, coments, product, comentService) {
 			
-			$scope.product = product;
-			$scope.coments = coments;
+			var vm = this;
+			
+			vm.product = product;
+			vm.coments = coments;
 			//alert(JSON.stringify(coments));
-			$scope.addComent = function(coment, rating, comentform) {
+			vm.addComent = function(coment, rating, comentform) {
 								
 				if(comentform.$valid){
 					comentService.putComent(product.id, rating, coment)
@@ -22,7 +24,7 @@ angular.module('App').
 								'text': coment
 							};
 							
-							$scope.coments.unshift(nevComent);
+							vm.coments.unshift(nevComent);
 							
 						}
 							
@@ -30,11 +32,11 @@ angular.module('App').
 				}
 			};
 			
-			$scope.getClass = function(rating) {
+			vm.getClass = function(rating) {
 				return rating >= 3 ? 'positiv' : 'negativ';
 			};
 			
-			$scope.getData = function(date) {
+			vm.getData = function(date) {
 				if (date !== '2130-12-23T10:23:02.685Z') {
 					return date;
 				} else {

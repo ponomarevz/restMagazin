@@ -2,23 +2,7 @@
     <h1>Список продуктів</h1>
     <div class="row list-group">
         
-		<div class="product  col-xs-4 col-lg-4" ng-repeat="item in products">
-            <div ui-sref="product({id: item.id})" class="thumbnail">
-                <img class="group" ng-src="http://smktesting.herokuapp.com/static/{{item.img}}" alt="Зобр відсутнє" />
-				
-				<div class="hover">
-					<p style="color: #fff"><strong>{{item.text}}</strong></p>
-                    <p>Може бути: Ціна</p>
-                </div>
-									
-				<div class="caption">
-                    <h4>{{item.title}}</h4>
-				</div>
-
-            </div>
-        </div>
-		 <!-- повторил что бы посмотреть выстраивается ли в Grid -->
-		<div class="product  col-xs-4 col-lg-4" ng-repeat="item in products">
+		<div class="product  col-xs-4 col-lg-4" ng-repeat="item in prs.products">
             <div ui-sref="product({id: item.id})" class="thumbnail">
                 <img class="group" ng-src="http://smktesting.herokuapp.com/static/{{item.img}}" alt="Зобр відсутнє" />
 				
@@ -34,7 +18,22 @@
             </div>
         </div>
 		
-		
+		<!-- повторил что бы посмотреть выстраивается ли в Grid -->
+		<div class="product  col-xs-4 col-lg-4" ng-repeat="item in prs.products">
+            <div ui-sref="product({id: item.id})" class="thumbnail">
+                <img class="group" ng-src="http://smktesting.herokuapp.com/static/{{item.img}}" alt="Зобр відсутнє" />
+				
+				<div class="hover">
+					<p style="color: #fff"><strong>{{item.text}}</strong></p>
+                    <p>Може бути: Ціна</p>
+                </div>
+									
+				<div class="caption">
+                    <h4>{{item.title}}</h4>
+				</div>
+
+            </div>
+        </div>
 		
         
     </div>

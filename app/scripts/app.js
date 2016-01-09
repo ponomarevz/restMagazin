@@ -20,7 +20,8 @@
 				views: {
 					'centrV@' : {
 						templateUrl:'views/signIn.html',
-						controller:'autor'
+						controller:'autor',
+						controllerAs:"atr"
 					},
 				},
 			})
@@ -29,7 +30,8 @@
 				views: {
 					'centrV@' : {
 						templateUrl:'views/signUp.html',
-						controller:'autor'
+						controller:'autor',
+						controllerAs:"atr"
 					},
 				},
 			})
@@ -38,7 +40,8 @@
 				views: {
 					'centrV@' : {
 						templateUrl:'views/products.html',
-						controller:'products'
+						controller:'products',
+						controllerAs:"prs"
 					},
 				},
 				resolve: {
@@ -54,7 +57,8 @@
 				views: {
 					'centrV@' : {
 						templateUrl:'views/product.html',
-						controller:'product'
+						controller:'product',
+						controllerAs:"pr"
 					},
 				},
 				resolve: {
@@ -68,9 +72,10 @@
 					product: function(prodService, $stateParams) {
 						var id = $stateParams.id;
 						//---------в контроллер возвращаем выбраный продукт из списка
+						//--------- в API нет запроса на продукт по ID тому делаю так
 						return prodService.getProd().then(function(res){
 							for (var i in res) { 
-								if(res[i].id == id) {
+								if(res[i].id === parseInt(id)) {
 									return res[i];
 								}
 							}
@@ -81,7 +86,32 @@
 			});
 			
 	})
-	.config(function($urlRouterProvider){
+	.config(function($urlRouterProvider, $httpProvider){
 		// redirect to /products  
 		$urlRouterProvider.when('', '/products');
+		//------ если токен существует добавляем к запросу текен если отве 401 или 403 или 500 делаем редирект--------
+		//----------------------------- таким образом обрабатываем каждый запрос к серверу--------------------
+		$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
+            return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if ($localStorage.token) {
+						
+                        config.headers.Authorization = 'Token ' + $localStorage.token;
+                    }
+					
+                    return config;
+                },
+                'responseError': function(res) {
+					//------ сделал 500 для тестирования с запроса на комент без токена редирект, -------------------
+					//-------------хотя в отображении убрал возможность отпр комент-----------------------------------
+                    if(res.status === 401 || res.status === 403 || res.status === 500) {
+                        $location.path('signin');
+                    }
+                    return $q.reject(res);
+                }
+            };
+        }]);
+		
 	});
+	
